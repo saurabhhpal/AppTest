@@ -1,0 +1,17 @@
+package com.virtusa.util;
+
+public class Constants {
+	
+	public static final double GBP_TO_USD = 1.26;
+	
+	public static final double CHF_TO_USD = 1.04;
+	
+	public static final double EUR_TO_USD = 1.12;
+	
+	public static final String FILE_PATH = "src\\test\\resources\\FILE.DAT";
+	
+	public static final String FILE_ERROR_CODE = "500";
+	
+	public static final String FILE_ERROR_MSG = "DATA FILE UNAVAILABLE"'
+ 	
+}

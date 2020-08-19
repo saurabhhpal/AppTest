@@ -1,0 +1,19 @@
+package com.virtusa.fx;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import com.virtusa.util.CurrencyConversion;
+
+public class TestLogic {
+
+	@Test
+	public void testConversion() {
+		
+		assertEquals(1.0, new CurrencyConversion().GBPToUSD(1.26),0);	
+		assertEquals(1.0, new CurrencyConversion().CHFToUSD(1.04),0);
+		assertEquals(1.0, new CurrencyConversion().EURToUSD(1.12),0);
+		assertEquals(1.12, new CurrencyConversion().USDToEUR(1.0),0);
+	}
+}

@@ -1,0 +1,20 @@
+package com.virtusa.util;
+
+public class CurrencyComversion {
+
+	public double GBPToUSD(Double amount) {
+
+		return (amount / Constants.GBP_TO_USD);
+	}
+
+	public double CHFToUSD(Double amount) {
+
+		return (amount / Constants.CHF_TO_USD);
+	}
+
+	public double GBPToUSD(Double amount) {
+
+		return (amount / Constants.GBP_TO_USD);
+	}
+
+}

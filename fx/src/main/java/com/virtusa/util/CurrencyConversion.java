@@ -1,0 +1,27 @@
+package com.virtusa.util;
+
+public class CurrencyConversion {
+
+	public double GBPToEUR(Double amount) {
+
+		return (amount * Constants.GBP_TO_USD/Constants.EUR_TO_USD);
+	}
+
+	public double CHFToEUR(Double amount) {
+
+		return (amount * Constants.CHF_TO_USD/Constants.EUR_TO_USD);
+	}
+
+	public double EURToUSD(Double amount) {
+
+		return (amount * Constants.EUR_TO_USD);
+	}
+	
+	public double USDToEUR(Double amount) {
+
+		return  amount / Constants.EUR_TO_USD ;
+	}
+	
+	
+
+}

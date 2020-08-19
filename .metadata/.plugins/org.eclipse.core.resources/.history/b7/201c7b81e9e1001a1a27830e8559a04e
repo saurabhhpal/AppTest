@@ -1,0 +1,119 @@
+package com.virtusa.fx;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+
+import com.virtusa.fx.DAO.FileObject;
+import com.virtusa.util.CurrencyConversion;
+
+/**
+ * Test!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	boolean skipHeader= true;
+    	List<FileObject> objList = new ArrayList<FileObject>();
+    	File file = new File("src\\test\\resources\\FILE.DAT");
+    	Scanner scnr;
+		try {
+			scnr = new Scanner(file);
+		
+    	while(scnr.hasNextLine()){
+    		if(skipHeader) {
+    			scnr.nextLine();
+    			skipHeader = false;
+    		}
+    	   String line = scnr.nextLine();
+    	   
+    	   String[] dataObjects = line.split("	");
+    	   
+//    	   System.out.println(Arrays.toString(dataObjects));
+				
+				  for (int i = 0 ; i < dataObjects.length ;i++) {
+					  FileObject obj = new FileObject();
+					  obj.setCompanyCode(Integer.valueOf( dataObjects[i++]));
+					  obj.setAccount(Long.valueOf(dataObjects[i++])); 
+					  obj.setCity(dataObjects[i++]);
+					  obj.setCountry(dataObjects[i++]); 
+					  obj.setCreditRating(dataObjects[i++]);
+					  obj.setCurrency(dataObjects[i++]);
+					  obj.setAmount(Double.valueOf(dataObjects[i++]));
+					  objList.add(obj);
+				  }
+    	   
+    	}
+//    	
+//    	Map<BigDecimal, List<Item>> groupByPriceMap =
+//    			items.stream().collect(Collectors.groupingBy(Item::getPrice));
+//
+//    	Map<BigDecimal, Set<String>> result =
+//                items.stream().collect(
+//                        Collectors.groupingBy(Item::getPrice,
+//                                Collectors.mapping(Item::getName, Collectors.toSet())
+//                        )
+//                );
+//    	Map<String, Integer> sum = items.stream().collect(
+//                Collectors.groupingBy(Item::getName, Collectors.summingInt(Item::getQty)));
+    	CurrencyConversion cc = new CurrencyConversion();
+    	
+			
+			  for (FileObject fileData  : objList) {
+				  Double amount = fileData.getAmount();
+				  if(fileData.getCurrency() == "GBP") {
+					  
+					 
+				  }
+				  
+				  switch (fileData.getCurrency()) {
+				case "GBP":
+					 fileData.setAmount(cc.GBPToUSD( amount));
+					break;
+				case "CHF":
+					 fileData.setAmount(cc.GBPToUSD( amount));
+					break;
+				case "EUR":
+					 fileData.setAmount(cc.GBPToUSD( amount));
+					break;	
+				default:
+					break;
+				}
+			 
+			  
+			  }
+			 
+
+    	
+    	Map<Object, Double> countryList = objList.stream().filter(x -> !"".equals(x.getCountry().trim())).
+    			collect(Collectors.groupingBy(x -> new ArrayList<String>(Arrays.asList(x.getCountry(), x.getCreditRating())), 
+    			Collectors.averagingDouble(FileObject::getAmount)));
+    	
+    	Map<Object, Double> cityList = objList.stream().filter(x -> "".equals(x.getCountry().trim()))
+    			.collect(Collectors.groupingBy(x -> new ArrayList<String>(Arrays.asList(x.getCity(),x.getCreditRating())), 
+    			Collectors.averagingDouble(FileObject::getAmount)));
+    	
+//    	x -> return new ArrayList<String>(Arrays.asList(x.getTeamID(), x.getLgID())), Collectors.toSet()))
+    	
+    	System.out.println(countryList);
+    	System.out.println(cityList);
+//    	System.out.println(objList.toString());
+    	
+		}catch (FileNotFoundException e) {
+			System.err.print("File does not exist");
+			e.printStackTrace();
+		}
+    	
+		
+		
+    
+    }
+}

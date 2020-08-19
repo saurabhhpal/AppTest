@@ -1,0 +1,11 @@
+package com.virtusa.util;
+
+public class CurrencyComversion {
+	
+	
+	public double GBPToUSD(Double amount) {
+		
+		return (Constants.GBP_TO_USD/amount);
+	}
+
+}

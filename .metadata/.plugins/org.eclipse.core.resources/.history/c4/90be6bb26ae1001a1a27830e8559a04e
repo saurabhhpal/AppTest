@@ -1,0 +1,33 @@
+package com.virtusa.fx;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+
+    	File file = new File("src\\test\\resources\\FILE.DAT");
+    	Scanner scnr;
+		try {
+			scnr = new Scanner(file);
+		
+    	while(scnr.hasNextLine()){
+    	   String line = scnr.nextLine();
+    	   System.out.println(line);
+    	   
+    	}
+		}catch (FileNotFoundException e) {
+			System.err.print("FILE does not exist");
+			e.printStackTrace();
+		}
+    	
+    
+    }
+}

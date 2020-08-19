@@ -1,0 +1,23 @@
+package com.virtusa.util;
+
+import java.util.List;
+
+import com.virtusa.fx.DAO.FileObject;
+
+public class Validations {
+	
+	public boolean currencyValidation(List<FileObject> dataList) {
+		
+		for (FileObject objectData : dataList) {
+			
+			if(objectData.getCurrency().length() != 3)
+				return false;
+				
+		}
+		
+		return true;
+	}
+	
+	
+
+}

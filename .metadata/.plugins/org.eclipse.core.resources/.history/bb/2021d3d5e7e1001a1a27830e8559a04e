@@ -1,0 +1,35 @@
+package com.virtusa.fx;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+
+import org.junit.Test;
+
+import com.virtusa.util.CurrencyConversion;
+
+public class TestLogic {
+
+	@Test
+	public void testConversion() {
+		
+		assertEquals(1.26, new CurrencyConversion().GBPToUSD(1.0),0);	
+		assertEquals(1.04, new CurrencyConversion().CHFToUSD(1.0),0);
+		assertEquals(1.12, new CurrencyConversion().EURToUSD(1.0),0);
+		assertEquals(1.0, new CurrencyConversion().USDToEUR(1.12),0);
+	}
+	
+	@Test
+	public void testFilePath() {
+		
+		String path = "src/test/resources/FILE.DAT";
+		 
+		File file = new File(path);
+		String absolutePath = file.getAbsolutePath();
+		 
+		System.out.println(absolutePath);
+		 
+		assertTrue(absolutePath.endsWith("src/test/resources/FILE.DAT"));
+	}
+}

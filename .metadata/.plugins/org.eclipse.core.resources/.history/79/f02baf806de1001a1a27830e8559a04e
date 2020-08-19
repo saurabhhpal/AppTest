@@ -1,0 +1,61 @@
+package com.virtusa.fx;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+import com.virtusa.fx.DAO.FileObject;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	boolean skipHeader= true;
+    	List<FileObject> objList = new ArrayList<FileObject>();
+    	File file = new File("src\\test\\resources\\FILE.DAT");
+    	Scanner scnr;
+		try {
+			scnr = new Scanner(file);
+		
+    	while(scnr.hasNextLine()){
+    		if(skipHeader) {
+    			scnr.nextLine();
+    			skipHeader = false;
+    		}
+    	   String line = scnr.nextLine();
+    	   FileObject obj = new FileObject();
+    	   String[] dataObjects = line.split(" ");
+    	   
+    	   System.out.print(Arrays.toString(dataObjects));
+				/*
+				 * for (int i = 0 ; i < dataObjects.length ; i++) {
+				 * 
+				 * obj.setCompanyCode(Integer.valueOf( dataObjects[i]));
+				 * obj.setAccount(Long.valueOf(dataObjects[i])); obj.setCity(dataObjects[i]);
+				 * obj.setCountry(dataObjects[i]); obj.setCreditRating(dataObjects[i]);
+				 * obj.setCurrency(dataObjects[i]);
+				 * obj.setAmount(Double.valueOf(dataObjects[i])); }
+				 */
+    	   
+    	   objList.add(obj);
+    	   
+    	   
+    	   
+    	   System.out.println(objList.toString());
+    	   
+    	}
+		}catch (FileNotFoundException e) {
+			System.err.print("File does not exist");
+			e.printStackTrace();
+		}
+    	
+    
+    }
+}
