@@ -1,4 +1,4 @@
-package com.virtusa.util;
+package com.virtusa.fx.constants;
 
 public class Constants {
 	

@@ -1,4 +1,6 @@
-package com.virtusa.util;
+package com.virtusa.fx.util;
+
+import com.virtusa.fx.constants.Constants;
 
 public class CurrencyConversion {
 

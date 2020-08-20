@@ -1,4 +1,4 @@
-package com.virtusa.fx.DAO;
+package com.virtusa.fx.beans;
 
 public class FileObject {
 
@@ -9,6 +9,22 @@ public class FileObject {
 	private String creditRating;
 	private String currency;
 	private double amount;
+	
+	public FileObject() {
+		super();
+	}
+
+	public FileObject(Integer companyCode, Long account, String city, String country, String creditRating,
+			String currency, double amount) {
+		super();
+		this.companyCode = companyCode;
+		this.account = account;
+		this.city = city;
+		this.country = country;
+		this.creditRating = creditRating;
+		this.currency = currency;
+		this.amount = amount;
+	}
 
 	public Integer getCompanyCode() {
 		return companyCode;
