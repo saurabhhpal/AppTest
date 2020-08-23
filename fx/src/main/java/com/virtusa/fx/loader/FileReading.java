@@ -1,4 +1,4 @@
-package com.virtusa.fx;
+package com.virtusa.fx.loader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +14,7 @@ import com.virtusa.fx.beans.FileObject;
 import com.virtusa.fx.constants.Constants;
 import com.virtusa.fx.exceptions.FileException;
 import com.virtusa.fx.exceptions.ValidationException;
+import com.virtusa.fx.group.AppOutput;
 import com.virtusa.fx.util.CurrencyToEUR;
 import com.virtusa.fx.validations.Validations;
 
@@ -74,33 +75,12 @@ public class FileReading {
 		if(valid) {
 			List<FileObject> convertedList= new CurrencyToEUR().convertCurrencyToEUR(objList);
 			
-			groupAndPrintCountry(convertedList);
+			AppOutput output = new AppOutput();
+			output.groupAndPrintCountry(convertedList);
 			
 			
 		}
 	}
 
-	private void groupAndPrintCountry(List<FileObject> convertedList) {
-		//Grouping and Printing Objects
-		Map<Object, Double> countryList = convertedList.stream().filter(x -> !"".equals(x.getCountry().trim()))
-				.collect(Collectors.groupingBy(
-						x -> new ArrayList<String>(Arrays.asList(x.getCountry(), x.getCreditRating())),
-						Collectors.averagingDouble(FileObject::getAmount)));
-
-		Map<Object, Double> cityList = convertedList.stream().filter(x -> "".equals(x.getCountry().trim()))
-				.collect(Collectors.groupingBy(
-						x -> new ArrayList<String>(Arrays.asList(x.getCity(), x.getCreditRating())),
-						Collectors.averagingDouble(FileObject::getAmount)));
-		//Adding all city list to country
-		countryList.putAll(cityList);
-
-		for (Entry<Object, Double> entry : countryList.entrySet()) {
-			ArrayList<String> outputObj = (ArrayList<String>) entry.getKey();
-			System.out.println("Key: CreditRatingGroupingKey [countryCriteria= " + outputObj.get(0)
-					+ ", creditRatingCriteria=" + outputObj.get(1) + "] Value: " + entry.getValue());
-		}
-	}
-	
-	
 
 }
